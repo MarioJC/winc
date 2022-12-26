@@ -79,20 +79,27 @@ userProfile.max_age_interest = max_age_interest;
 const matches = [];
 
 for (const possibleMatch of mockData) {
+  // check if user age range and their age match
   if (possibleMatch.age >= userProfile.min_age_interest &&
     possibleMatch.age <= userProfile.max_age_interest) {
 
+    // check if their age range and user age match
     if (userProfile.age >= possibleMatch.min_age_interest &&
       userProfile.age <= possibleMatch.max_age_interest) {
 
+      // check if they have both have the location
       if (userProfile.location === possibleMatch.location) {
 
+        // check if their gender interest and user gender match. B can match with both M and F.
         if (userProfile.gender === possibleMatch.gender_interest ||
           (possibleMatch.gender_interest === "B" && (userProfile.gender === "M" || userProfile.gender === "F"))) {
 
+          // check if user gender interest and their gender match. B can match with both M and F.
           if (possibleMatch.gender === userProfile.gender_interest ||
             (userProfile.gender_interest === "B" && (possibleMatch.gender === "M" || possibleMatch.gender === "F"))) {
 
+            // If all above checks are true then we have found a match. Add it to the matches array.
+            // No need to manually count the matches. We will use matches.length for that later.
             matches.push(possibleMatch);
           }
         }
