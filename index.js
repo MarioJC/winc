@@ -108,9 +108,20 @@ for (const possibleMatch of mockData) {
   }
 }
 
-// console.table(matches);
+// Show user profile
+console.log("\nYour profile");
+console.table(userProfile);
+
+// Show all matches found, if any.
 if (matches.length > 0) {
   console.log("\nYour matches:");
   console.table(matches, ['first_name', 'last_name', 'age', 'gender']);
-  console.log(`Matched with ${matches.length} users.`);
+
+  // Not sure if console.table() counts as printing in a nice format (requirements)
+  // so adding some formatted string output just to make sure!
+  for (const match of matches) {
+    console.log(`${match.first_name} ${match.last_name} (${match.gender}) age ${match.age} is a match!`);
+  }
+
+  console.log(`\nMatched with ${matches.length} users.`);
 } else console.log("\nNo matches found. Try again tomorrow!");
